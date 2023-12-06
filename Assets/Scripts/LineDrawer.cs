@@ -28,6 +28,7 @@ public class LineDrawer : MonoBehaviour
 
     private void BeginDraw()
     {
+        Debug.Log("BeginDraw");
         CurrentLine = Instantiate(LinePrefabs, this.transform).GetComponent<Line>();
 
         CurrentLine.SetLineColor(LineColor);
@@ -38,8 +39,9 @@ public class LineDrawer : MonoBehaviour
 
     private void Draw()
     {
+        Debug.Log("Draw");
         Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.CircleCast(MousePos, LineWidth / 3f, Vector2.zero, CantDrawOverLayer);
+        RaycastHit2D hit = Physics2D.CircleCast(MousePos, LineWidth / 3f, Vector2.zero, 1f, CantDrawOverLayer);
 
         if(hit)
         {
@@ -53,6 +55,7 @@ public class LineDrawer : MonoBehaviour
 
     private void EndDraw()
     {
+        Debug.Log("EndDraw");
         if (CurrentLine != null)
         {
             if (CurrentLine.pointsCount < 2)
